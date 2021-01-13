@@ -13,7 +13,7 @@ public class Food {
 	
 	@Id
 	@Column(name = "food_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "food_name", unique = true, nullable = false)

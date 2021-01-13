@@ -12,7 +12,7 @@ public class HibernateUtil {
 	private static Session ses;
 	public static Session getSession() {
 		if(ses == null) {
-			return ses = sf.getCurrentSession();
+			return ses = sf.openSession();
 		}else {
 			return ses;
 		}

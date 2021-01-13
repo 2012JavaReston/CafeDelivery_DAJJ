@@ -21,7 +21,7 @@ public class Order {
 	
 	@Id
 	@Column(name = "order_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "total_price", nullable = false)
@@ -34,12 +34,15 @@ public class Order {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Food> foodOrdered;
 	
-	public Order(int id, double totalPrice, Customer customer, List<Food> foods) {
+	public Order(int id, Customer customer, List<Food> foods) {
 		super();
 		this.id = id;
-		this.totalPrice = totalPrice;
 		this.customer = customer;
 		this.foodOrdered = foods;
+		
+		for(Food f: foods) {
+			this.totalPrice += f.getPrice();
+		}
 	}
 	public Order() {
 		super();
