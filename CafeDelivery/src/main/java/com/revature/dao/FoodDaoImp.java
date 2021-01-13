@@ -20,14 +20,18 @@ public class FoodDaoImp implements FoodDao {
 
 	@Override
 	public Food getFoodById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		Food f = ses.get(Food.class, id);
+		
+		return f;
 	}
 
 	@Override
 	public List<Food> getAllFood() {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<Food> foodList = ses.createQuery("from Food", Food.class).list();
+		
+		return foodList;
 	}
 
 	@Override

@@ -15,10 +15,10 @@ public class MainDriver {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Customer c1 = new Customer(0, "username", "pass", "first", "last");
-		Customer c2 = new Customer(0, "username", "pass", "second", "last");
-		Customer c3 = new Customer(0, "username", "pass", "third", "last");
-		Customer c4 = new Customer(0, "username", "pass", "fourth", "last");
+		Customer c1 = new Customer(0, "username1", "pass", "first", "last");
+		Customer c2 = new Customer(0, "username2", "pass", "second", "last");
+		Customer c3 = new Customer(0, "username3", "pass", "third", "last");
+		Customer c4 = new Customer(0, "username4", "pass", "fourth", "last");
 		
 		Food f1 = new Food(0, "Soda", 1.49);
 		Food f2 = new Food(0, "Pizza", 10.99);
@@ -71,6 +71,16 @@ public class MainDriver {
 		oDao.insertNewOrder(o3);
 		oDao.insertNewOrder(o4);
 		oDao.insertNewOrder(o5);
+		
+//		System.out.println(cDao.getAllCustomers());
+//		System.out.println(cDao.getCustomerById(1));
+		System.out.println(cDao.getCustomerByCredentials("username3", "pass"));
+		
+//		System.out.println(fDao.getAllFood());
+//		System.out.println(fDao.getFoodById(4));
+//		
+//		System.out.println(oDao.getOrderById(3));
+//		System.out.println(oDao.getOrdersByCustomerId(4));
 		
 	}
 

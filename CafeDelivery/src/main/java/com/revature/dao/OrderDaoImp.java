@@ -22,14 +22,18 @@ public class OrderDaoImp implements OrderDao {
 
 	@Override
 	public Order getOrderById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		Order o = ses.get(Order.class, id);
+		
+		return o;
 	}
 
 	@Override
 	public List<Order> getOrdersByCustomerId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<Order> orderList = ses.createQuery("from Order where customer_fk = " + id , Order.class).list();
+		
+		return orderList;
 	}
 
 	@Override
