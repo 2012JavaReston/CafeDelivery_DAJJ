@@ -1,5 +1,21 @@
 package com.revature.dao;
 
-public interface OrderDao {
+import java.util.List;
 
+import com.revature.model.Order;
+
+public interface OrderDao {
+	
+	//Create methods
+	public void insertNewOrder(Order o);
+	
+	//Read methods
+	public Order getOrderById(int id);
+	public List<Order> getOrdersByCustomerId(int id);
+	
+	//Update methods
+	public void updateOrder(Order o);
+	
+	//Delete methods
+	public void deleteOrder(Order o);
 }
