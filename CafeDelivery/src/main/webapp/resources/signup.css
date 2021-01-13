@@ -115,6 +115,10 @@ body {
 .create-account-link:hover {
     color: rgb(139,69,19);
 }
+.error-message {
+    color: crimson;
+    font-size: 14px;
+}
 
 @media screen and (min-width: 768px) {
     .page-content {
