@@ -14,7 +14,7 @@
 }
 body {
     margin: 0;
-    background: url("/pages/resources/table-background.jpg") no-repeat center center fixed;
+    background: url("/CafeDelivery/resources/table-background.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 .page-content {
