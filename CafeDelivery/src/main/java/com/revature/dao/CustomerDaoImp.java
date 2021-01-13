@@ -26,6 +26,12 @@ public class CustomerDaoImp implements CustomerDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Customer getCustomerByCredentials(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public List<Customer> getAllCustomers() {
