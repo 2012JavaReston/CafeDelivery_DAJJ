@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature.model.Customer;
 import com.revature.util.HibernateUtil;
@@ -23,14 +24,34 @@ public class CustomerDaoImp implements CustomerDao {
 
 	@Override
 	public Customer getCustomerById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		Customer c = ses.get(Customer.class, id);
+		
+		return c;
+	}
+	
+	/**
+	 * I wrote up examples using either HQL or Criteria API
+	 */
+	
+	@Override
+	public Customer getCustomerByCredentials(String username, String password) {
+		Session ses = HibernateUtil.getSession();
+//		Customer c = ses.createQuery("from Customer where username = '" + username 
+//										+ "' and password = '" + password + "'", Customer.class)
+//										.uniqueResult();
+		Customer c = (Customer) ses.createCriteria(Customer.class)
+					.add(Restrictions.eq("username", username))
+					.add(Restrictions.eq("password", password)).uniqueResult();
+		return c;
 	}
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<Customer> cList = ses.createQuery("from Customer", Customer.class).list();
+		
+		return cList;
 	}
 	
 	@Override

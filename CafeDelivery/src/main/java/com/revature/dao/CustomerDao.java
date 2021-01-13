@@ -12,6 +12,7 @@ public interface CustomerDao {
 	
 	//Read methods
 	public Customer getCustomerById(int id);
+	public Customer getCustomerByCredentials(String username, String password);
 	public List<Customer> getAllCustomers();
 	
 	//Update methods
