@@ -14,7 +14,7 @@
 }
 body {
     margin: 0;
-    background: url("/pages/resources/table-background.jpg") no-repeat center center fixed;
+    background: url("/CafeDelivery/resources/table-background.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 .page-content {
@@ -113,4 +113,8 @@ body {
 }
 .create-account-link:hover {
     color: rgb(139,69,19);
+}
+.error-message {
+    color: crimson;
+    font-size: 14px;
 }
