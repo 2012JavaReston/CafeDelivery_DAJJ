@@ -13,20 +13,20 @@
 <body>
     <div class="page-content">
         <h1 class="heading">Cafe Login</h1>
-        <form class="form">
+        <div class="form">
             <div class="entry-container">
                 <p class="entry-heading">Username</p>
-                <input id="username" class="input" type="text" placeholder="username"/>
+                <input id="username" class="input" type="text" placeholder="username" required/>
                 <span class="material-icons icon">person</span>
             </div>
             <div class="entry-container">
                 <p class="entry-heading">Password</p>
-                <input id="password" class="input" type="password" placeholder="password"/>
+                <input id="password" class="input" type="password" placeholder="password" required/>
                 <span class="material-icons icon">vpn_key</span>
             </div>
             <p id="error" class="error-message"></p>
             <input class="button" type="button" onclick="submitForm()" value="Login">
-        </form>
+        </div>
         <div class="create-account-container">
             <p>or</p>
             <a class="create-account-link" href="/CafeDelivery/signup.html">Create Account</a>
