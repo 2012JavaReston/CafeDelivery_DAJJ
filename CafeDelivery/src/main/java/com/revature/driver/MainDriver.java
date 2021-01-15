@@ -59,6 +59,11 @@ public class MainDriver {
 		cDao.insertNewCustomer(c2);
 		cDao.insertNewCustomer(c3);
 		cDao.insertNewCustomer(c4);
+		cDao.insertNewCustomer(c4);
+		
+		cDao.insertNewCustomer(new Customer(0, "username1", "p", "f", "l"));
+		cDao.insertNewCustomer(new Customer(0, "username5", "p", "f", "l"));
+		
 		
 		fDao.insertNewFood(f1);
 		fDao.insertNewFood(f2);
@@ -74,7 +79,7 @@ public class MainDriver {
 		
 //		System.out.println(cDao.getAllCustomers());
 //		System.out.println(cDao.getCustomerById(1));
-		System.out.println(cDao.getCustomerByCredentials("username3", "pass"));
+//		System.out.println(cDao.getCustomerByCredentials("username3", "pass"));
 		
 //		System.out.println(fDao.getAllFood());
 //		System.out.println(fDao.getFoodById(4));
