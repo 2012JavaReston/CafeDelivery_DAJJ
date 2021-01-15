@@ -12,14 +12,19 @@ import com.revature.util.HibernateUtil;
 public class CustomerDaoImp implements CustomerDao {
 
 	@Override
-	public void insertNewCustomer(Customer c) {
+	public boolean insertNewCustomer(Customer c) {
 		// TODO Auto-generated method stub
 		Session ses = HibernateUtil.getSession();
 		Transaction t = ses.beginTransaction();
+		try {
+			ses.save(c);
+			t.commit();
+			return true;
+		}catch(Exception e){
+			t.rollback();
+			return false;
+		}
 		
-		ses.save(c);
-		
-		t.commit();
 	}
 
 	@Override
