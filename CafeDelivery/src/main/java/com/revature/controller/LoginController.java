@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Customer;
 import com.revature.service.Service;
 
 public class LoginController {
 	
+	private static final Logger loggy = Logger.getLogger(LoginController.class);
 	private static Service service = new Service();
 	
 	public static void checkSession(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,11 +47,14 @@ public class LoginController {
 		if(cust != null) {
 			HttpSession sesh = req.getSession();
 			sesh.setAttribute("customer", cust);
+			
+			loggy.info(cust.getFirstName() + " " + cust.getLastName() + " (" + cust.getUsername() + ") has logged in");
 
 			resp.setStatus(200);
 			resp.sendRedirect("/CafeDelivery/api/order");
 		} else {
 			resp.setStatus(401);
+			resp.getWriter().write("Invalid username or password");
 		}
 	}
 	
