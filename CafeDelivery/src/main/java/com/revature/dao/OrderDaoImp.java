@@ -11,13 +11,19 @@ import com.revature.util.HibernateUtil;
 public class OrderDaoImp implements OrderDao {
 
 	@Override
-	public void insertNewOrder(Order o) {
+	public boolean insertNewOrder(Order o) {
 		Session ses = HibernateUtil.getSession();
 		Transaction t = ses.beginTransaction();
 		
-		ses.save(o);
+		try {
+			ses.save(o);
+			t.commit();
+			return true;
+		}catch(Exception e) {
+			t.rollback();
+			return false;
+		}
 		
-		t.commit();
 	}
 
 	@Override

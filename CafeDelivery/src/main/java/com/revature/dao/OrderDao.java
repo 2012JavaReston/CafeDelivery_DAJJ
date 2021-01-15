@@ -7,7 +7,7 @@ import com.revature.model.Order;
 public interface OrderDao {
 	
 	//Create methods
-	public void insertNewOrder(Order o);
+	public boolean insertNewOrder(Order o);
 	
 	//Read methods
 	public Order getOrderById(int id);

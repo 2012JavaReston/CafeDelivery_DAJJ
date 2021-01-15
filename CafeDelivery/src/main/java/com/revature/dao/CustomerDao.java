@@ -7,7 +7,7 @@ import com.revature.model.Customer;
 public interface CustomerDao {
 	
 	//Create methods
-	public void insertNewCustomer(Customer c);
+	public boolean insertNewCustomer(Customer c);
 	
 	
 	//Read methods
