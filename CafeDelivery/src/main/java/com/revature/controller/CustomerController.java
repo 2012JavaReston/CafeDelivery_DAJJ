@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.*;
 import com.revature.service.Service;
 
 public class CustomerController {
 	
+	private static final Logger loggy = Logger.getLogger(LoginController.class);
 	private static Service service = new Service();
 
 	public static void checkSession(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,9 +30,18 @@ public class CustomerController {
 				switch(req.getMethod()) {
 					case "GET":
 						resp.setStatus(200);
-						req.getRequestDispatcher("/customer.html").forward(req, resp);
-//						getMenu(req, resp);
-//						getOrders(req, resp, cust);
+						String endpoint = req.getRequestURI();
+						switch(endpoint) {
+							case "/CafeDelivery/api/order":
+								req.getRequestDispatcher("/customer.html").forward(req, resp);
+								break;
+							case "/CafeDelivery/api/order/menu":
+								getMenu(req, resp);
+								break;
+							case "/CafeDelivery/api/order/history":
+								getOrders(req, resp, cust);
+								break;
+						}
 						break;
 					case "POST":
 						submitOrder(req, resp, cust);
@@ -51,8 +63,6 @@ public class CustomerController {
 		
 		List<Food> menu = service.checkAllFood();
 		resp.getWriter().write(om.writeValueAsString(menu));
-		
-		resp.setStatus(200);
 	}
 	
 	public static void getOrders(HttpServletRequest req, HttpServletResponse resp, Customer cust) throws ServletException, IOException {
@@ -61,8 +71,6 @@ public class CustomerController {
 		
 		List<Order> orderList = service.checkOrdersByCustomer(cust.getId());
 		resp.getWriter().write(om.writeValueAsString(orderList));
-		
-		resp.setStatus(200);
 	}
 	
 	public static void submitOrder(HttpServletRequest req, HttpServletResponse resp, Customer cust) throws ServletException, IOException {
@@ -72,9 +80,15 @@ public class CustomerController {
 		order.setCustomer(cust);
 		
 		if(service.createOrder(order)) {
+			loggy.info(cust.getFirstName() + " " + cust.getLastName() + " (" + cust.getUsername() + ") submitted an order");
+			
 			resp.setStatus(200);
+			resp.getWriter().write("Order submitted");
 		} else {
+			loggy.error("Failed to submit an order");
+			
 			resp.setStatus(500);
+			resp.getWriter().write("Failed to submit order");
 		}
 	}
 	

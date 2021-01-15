@@ -50,6 +50,24 @@ public class RequestHelper {
 						resp.setStatus(405);
 				}
 				break;
+			case "/CafeDelivery/api/order/menu":
+				switch(req.getMethod()) {
+					case "GET":
+						CustomerController.checkSession(req, resp);
+						break;
+					default:
+						resp.setStatus(405);
+				}
+				break;
+			case "/CafeDelivery/api/order/history":
+				switch(req.getMethod()) {
+					case "GET":
+						CustomerController.checkSession(req, resp);
+						break;
+					default:
+						resp.setStatus(405);
+				}
+				break;
 			case "/CafeDelivery/api/logout":
 				switch(req.getMethod()) {
 					case "POST":
