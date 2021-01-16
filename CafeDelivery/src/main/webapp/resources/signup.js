@@ -10,7 +10,9 @@ function submitForm(){
     if(isValid()){
         const HTTP = new XMLHttpRequest()
         HTTP.onreadystatechange = e => {
-            if(HTTP.readyState == 4 && HTTP.status == 406){
+            if(HTTP.readyState == 4 && HTTP.status == 200){
+                window.location.assign(HTTP.responseURL)
+            } else if(HTTP.readyState == 4 && HTTP.status == 406){
                 error.innerText = "Error: the username is already taken."
             }
         }

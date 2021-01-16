@@ -6,7 +6,9 @@ function submitForm(){
     if(isValid()){
         const HTTP = new XMLHttpRequest()
         HTTP.onreadystatechange = e => {
-            if(HTTP.readyState == 4 && HTTP.status == 401){
+            if(HTTP.readyState == 4 && HTTP.status == 200){
+                window.location.assign(HTTP.responseURL)
+            } else if(HTTP.readyState == 4 && HTTP.status == 401){
                 error.innerText = "Error: the username or password was incorrect."
             }
         }
