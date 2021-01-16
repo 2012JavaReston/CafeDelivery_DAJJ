@@ -6,8 +6,22 @@ const lName = document.getElementById("lName")
 const password = document.getElementById("password")
 const cPassword = document.getElementById("cPassword")
 function submitForm(){
+    error.innerText = "";
     if(isValid()){
-        form.submitForm
+        const HTTP = new XMLHttpRequest()
+        HTTP.onreadystatechange = e => {
+            if(HTTP.readyState == 4 && HTTP.status == 406){
+                error.innerText = "Error: the username is already taken."
+            }
+        }
+        HTTP.open("POST", "/CafeDelivery/api/signup");
+        HTTP.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        HTTP.send(JSON.stringify({ 
+            "username": `${username.value}`, 
+            "password": `${password.value}`,
+            "firstName": `${fName.value}`,
+            "lastName": `${lName.value}`
+        }))
     }
 }
 function isValid() {
