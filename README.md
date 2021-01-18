@@ -9,7 +9,7 @@ Request helper checks endpoint(uri) and method then sends them to the appropriat
 
 Login controller handles login and logout requests
 
-Sign up contorller handles account creation
+Sign up controller handles account creation
 
 Customer controller handles getting the menu and order history, and submitting new orders
 
