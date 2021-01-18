@@ -4,9 +4,13 @@
 Utilized Java to set up servlets, controllers, and service layer to connect to dao layer, Tomcat for running the server, Postman for testing, and log4j for logging
 
 Master servlet takes in all requests and sends them to request helper
+
 Request helper checks endpoint(uri) and method and sends them to the appropriate controller
+
 Login controller handles login and logout requests
+
 Sign up contorller handles account creation
+
 Customer controller handles getting the menu and order history, and submitting new orders
 
 ## Back End
