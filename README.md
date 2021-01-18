@@ -5,7 +5,7 @@ Utilized Java to set up servlets, controllers, and service layer to connect to d
 
 Master servlet takes in all requests and sends them to request helper
 
-Request helper checks endpoint(uri) and method and sends them to the appropriate controller
+Request helper checks endpoint(uri) and method then sends them to the appropriate controller
 
 Login controller handles login and logout requests
 
