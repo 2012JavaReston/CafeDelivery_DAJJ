@@ -23,33 +23,26 @@ public class CustomerController {
 		HttpSession sesh = req.getSession(false);
 		if(sesh != null && sesh.getAttribute("customer") != null) {
 			Customer cust = (Customer) sesh.getAttribute("customer");
-			String username = cust.getUsername();
-			String password = cust.getPassword();
 			
-			if(cust.equals(service.checkLogin(username, password))) {
-				switch(req.getMethod()) {
-					case "GET":
-						resp.setStatus(200);
-						String endpoint = req.getRequestURI();
-						switch(endpoint) {
-							case "/CafeDelivery/api/order":
-								req.getRequestDispatcher("/customer.html").forward(req, resp);
-								break;
-							case "/CafeDelivery/api/order/menu":
-								getMenu(req, resp);
-								break;
-							case "/CafeDelivery/api/order/history":
-								getOrders(req, resp, cust);
-								break;
-						}
-						break;
-					case "POST":
-						submitOrder(req, resp, cust);
-						break;
-				}
-			} else {
-				resp.setStatus(401);
-				resp.sendRedirect("/CafeDelivery/api/login");
+			switch(req.getMethod()) {
+				case "GET":
+					resp.setStatus(200);
+					String endpoint = req.getRequestURI();
+					switch(endpoint) {
+						case "/CafeDelivery/api/order":
+							req.getRequestDispatcher("/customer.html").forward(req, resp);
+							break;
+						case "/CafeDelivery/api/order/menu":
+							getMenu(req, resp);
+							break;
+						case "/CafeDelivery/api/order/history":
+							getOrders(req, resp, cust);
+							break;
+					}
+					break;
+				case "POST":
+					submitOrder(req, resp, cust);
+					break;
 			}
 		} else {
 			resp.setStatus(401);
