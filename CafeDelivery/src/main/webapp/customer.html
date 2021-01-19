@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Order</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/CafeDelivery/resources/global.css"> -->
+    <link rel="stylesheet" type="text/css" href="/CafeDelivery/resources/order.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
-<h1>Customer Page</h1>
-</body>
+    <div class="page-content">
+
+        <div id="menu-container">
+            <!--This populates automatically.-->
+        </div>
+        
+        <div class="order-container">
+            <h3>Current Order</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody id=current-order>
+                    <!--This populates automatically.-->
+                </tbody>
+            </table>
+            <button class="button" onclick="completeOrder()">Complete Order</button>
+        </div>
+        <div class="order-container">
+        <h3>Order History</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Total</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
+            <tbody id="past-orders">
+                
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
+    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/CafeDelivery/resources/order.js"></script>
+
 </html>
