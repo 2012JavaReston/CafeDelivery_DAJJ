@@ -14,13 +14,21 @@
 - Hibernate
 
 ## Getting Started
-1) Run `git clone https://github.com/PorkodiVenkatesh/PROJECT-NAME.git`
+1) Run `git clone https://github.com/2012JavaReston/CafeDelivery_DAJJ.git`
 2) Open Spring Tool Suite
 3) Import CafeDelivery
 4) Navigate to CafeDelivery/src/main/resources/hibernate.cfg.xml
 5) Change the connection username, url, and password to your own Postgresql database
 6) Run CafeDelivery/src/main/java/com/revature/driver/MainDriver.java on it's own to populate the database
 7) Run the application on the server
+
+## Front End
+### Login / Sign Up Page
+Responsive Design: Both pages implement responsive design. The Sign up page has a media query to change the design on mobile view.
+
+JavaScript: Ensures that all fields are required. It also ensures that the password and confirm password are identical. 
+
+AJAX: Is used to submit the forms via JSON format. It also catches login / sign up errors and renders them on page.
 
 
 ## Middle
