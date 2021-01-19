@@ -1,5 +1,28 @@
 # CafeDelivery_DAJJ
 
+## Technologies Used
+### Front End
+- HTML
+- CSS
+- JavaScript
+### Middle
+- Tomcat
+- Java
+### Back End
+- AWS
+- Postgresql
+- Hibernate
+
+## Getting Started
+1) Run `git clone https://github.com/PorkodiVenkatesh/PROJECT-NAME.git`
+2) Open Spring Tool Suite
+3) Import CafeDelivery
+4) Navigate to CafeDelivery/src/main/resources/hibernate.cfg.xml
+5) Change the connection username, url, and password to your own Postgresql database
+6) Run CafeDelivery/src/main/java/com/revature/driver/MainDriver.java on it's own to populate the database
+7) Run the application on the server
+
+
 ## Middle
 Utilized Java to set up servlets, controllers, and service layer to connect to dao layer, Tomcat for running the server, Postman for testing, and log4j for logging
 
