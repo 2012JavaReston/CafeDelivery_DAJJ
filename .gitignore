@@ -1,6 +1,5 @@
 /.metadata/
 /.sonarlint/
-/maven/CafeDelivery_DAJJ/CafeDelivery/pom.properties
 Servers/
 ##############################
 ## Java
@@ -23,6 +22,7 @@ pom.xml.versionsBackup
 pom.xml.next
 pom.xml.bak
 release.properties
+pom.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties

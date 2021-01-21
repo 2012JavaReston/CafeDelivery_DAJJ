@@ -2,20 +2,20 @@ package com.revature.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.revature.dao.*;
 import com.revature.model.*;
 
+@Component("Service")
 public class Service {
-
+	@Autowired
 	private CustomerDao cDao;
+	@Autowired
 	private OrderDao oDao;
+	@Autowired
 	private FoodDao fDao;
-	
-	public Service() {
-		this.cDao = new CustomerDaoImp();
-		this.oDao = new OrderDaoImp();
-		this.fDao = new FoodDaoImp();
-	}
 	
 	public Service(CustomerDaoImp cDao, OrderDaoImp oDao, FoodDaoImp fDao) {
 		this.cDao = cDao;

@@ -2,25 +2,29 @@ package com.revature.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Order;
-import com.revature.util.HibernateUtil;
 
+@Repository("OrderDao")
+@Transactional
 public class OrderDaoImp implements OrderDao {
 
+	private SessionFactory sesFact;
+
+	public OrderDaoImp(SessionFactory sesFact) {
+		super();
+		this.sesFact = sesFact;
+	}
+	
 	@Override
 	public boolean insertNewOrder(Order o) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
 		try {
-			ses.save(o);
-			t.commit();
+			this.sesFact.getCurrentSession().save(o);
 			return true;
 		}catch(Exception e) {
-			t.rollback();
 			return false;
 		}
 		
@@ -28,39 +32,22 @@ public class OrderDaoImp implements OrderDao {
 
 	@Override
 	public Order getOrderById(int id) {
-		Session ses = HibernateUtil.getSession();
-		Order o = ses.get(Order.class, id);
-		
-		return o;
+		return this.sesFact.getCurrentSession().get(Order.class, id);
 	}
 
 	@Override
 	public List<Order> getOrdersByCustomerId(int id) {
-		Session ses = HibernateUtil.getSession();
-		List<Order> orderList = ses.createQuery("from Order where customer_fk = " + id , Order.class).list();
-		
-		return orderList;
+		return this.sesFact.getCurrentSession().createQuery("from Order where customer_fk = " + id , Order.class).list();
 	}
 
 	@Override
 	public void updateOrder(Order o) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
-		ses.update(o);
-		
-		t.commit();
-		
+		this.sesFact.getCurrentSession().update(o);
 	}
 
 	@Override
 	public void deleteOrder(Order o) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
-		ses.delete(o);
-		
-		t.commit();
+		this.sesFact.getCurrentSession().delete(o);
 		
 	}
 

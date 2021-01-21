@@ -2,37 +2,36 @@ package com.revature.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Customer;
-import com.revature.util.HibernateUtil;
 
+@Repository("CustomerDao")
+@Transactional
 public class CustomerDaoImp implements CustomerDao {
 
+	private SessionFactory sesFact;
+
+	public CustomerDaoImp(SessionFactory sesFact) {
+		super();
+		this.sesFact = sesFact;
+	}
+	
 	@Override
 	public boolean insertNewCustomer(Customer c) {
-		// TODO Auto-generated method stub
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
 		try {
-			ses.save(c);
-			t.commit();
+			this.sesFact.getCurrentSession().save(c);
 			return true;
 		}catch(Exception e){
-			t.rollback();
 			return false;
 		}
-		
 	}
 
 	@Override
 	public Customer getCustomerById(int id) {
-		Session ses = HibernateUtil.getSession();
-		Customer c = ses.get(Customer.class, id);
-		
-		return c;
+		return this.sesFact.getCurrentSession().get(Customer.class, id);
 	}
 	
 	/**
@@ -41,44 +40,24 @@ public class CustomerDaoImp implements CustomerDao {
 	
 	@Override
 	public Customer getCustomerByCredentials(String username, String password) {
-		Session ses = HibernateUtil.getSession();
-//		Customer c = ses.createQuery("from Customer where username = '" + username 
-//										+ "' and password = '" + password + "'", Customer.class)
-//										.uniqueResult();
-		Customer c = (Customer) ses.createCriteria(Customer.class)
-					.add(Restrictions.eq("username", username))
-					.add(Restrictions.eq("password", password)).uniqueResult();
-		return c;
+		return this.sesFact.getCurrentSession().createQuery("from Customer where username = '" + username 
+			+ "' and password = '" + password + "'", Customer.class)
+			.uniqueResult();
 	}
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		Session ses = HibernateUtil.getSession();
-		List<Customer> cList = ses.createQuery("from Customer", Customer.class).list();
-		
-		return cList;
+		return this.sesFact.getCurrentSession().createQuery("from Customer", Customer.class).list();
 	}
 	
 	@Override
 	public void updateCustomer(Customer c) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
-		ses.update(c);
-		
-		t.commit();
-		
+		this.sesFact.getCurrentSession().update(c);
 	}
 
 	@Override
 	public void deleteCustomer(Customer c) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
-		ses.delete(c);
-		
-		t.commit();
-		
+		this.sesFact.getCurrentSession().delete(c);
 	}
 	
 }

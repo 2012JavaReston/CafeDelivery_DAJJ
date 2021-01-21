@@ -2,56 +2,46 @@ package com.revature.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Food;
-import com.revature.util.HibernateUtil;
 
+@Repository("FoodDao")
+@Transactional
 public class FoodDaoImp implements FoodDao {
 
+	private SessionFactory sesFact;
+
+	public FoodDaoImp(SessionFactory sesFact) {
+		super();
+		this.sesFact = sesFact;
+	}
+	
 	@Override
 	public void insertNewFood(Food f) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		ses.save(f);
-		t.commit();
+		this.sesFact.getCurrentSession().save(f);
 	}
 
 	@Override
 	public Food getFoodById(int id) {
-		Session ses = HibernateUtil.getSession();
-		Food f = ses.get(Food.class, id);
-		
-		return f;
+		return this.sesFact.getCurrentSession().get(Food.class, id);
 	}
 
 	@Override
 	public List<Food> getAllFood() {
-		Session ses = HibernateUtil.getSession();
-		List<Food> foodList = ses.createQuery("from Food", Food.class).list();
-		
-		return foodList;
+		return this.sesFact.getCurrentSession().createQuery("from Food", Food.class).list();
 	}
 
 	@Override
 	public void updateFood(Food f) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
-		ses.update(f);
-		
-		t.commit();
+		this.sesFact.getCurrentSession().update(f);
 	}
 
 	@Override
 	public void deleteFood(Food f) {
-		Session ses = HibernateUtil.getSession();
-		Transaction t = ses.beginTransaction();
-		
-		ses.delete(f);
-		
-		t.commit();
+		this.sesFact.getCurrentSession().delete(f);
 	}
 
 }

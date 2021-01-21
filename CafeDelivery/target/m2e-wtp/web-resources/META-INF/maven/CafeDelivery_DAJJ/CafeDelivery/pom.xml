@@ -69,5 +69,44 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.11.3</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
+  		
+  		<!--  SPRING BEANS, Provides Dependency Injection (DI) feature -->
+  		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-beans</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
+		
+		<!--  SPRING CONTEXT, Provides anontations and package scanning -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
+		
+		<!-- Spring ORM, Provides ORM Tools,
+			This is NOT an ORM framework... it is a module that HAPPENS to puppet Hibernate
+			
+		 -->
+				<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
   </dependencies>
 </project>
